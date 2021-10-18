@@ -341,15 +341,19 @@ if __name__ == '__main__':
         assert os.path.isdir(
             'checkpoint'), 'Error: no checkpoint directory found!'
         checkpoint=torch.load('./checkpoint/ckpt.pth')
+        f = torch.load('./checkpoint/result.pth')
+        result = f['result']
         net.load_state_dict(checkpoint['net'])
         best_acc=checkpoint['acc']
-        start_epoch=checkpoint['epoch']
+        start_epoch=checkpoint['epoch']+1
 
     criterion=nn.CrossEntropyLoss()
     optimizer=optim.SGD(net.parameters(), lr=args.lr,
                         momentum=0.9, weight_decay=5e-4)
     scheduler=torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=200)
 
+    for epoch in range(start_epoch):
+        scheduler.step()
     for epoch in range(start_epoch, start_epoch+args.epoch):
         train(epoch)
         test(epoch)
