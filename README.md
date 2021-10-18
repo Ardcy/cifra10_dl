@@ -46,7 +46,7 @@ python main.py --epoch=200 --lr=0.1  --batch_size=256
 
 2. 整理模型结果
 
-   <img src="README.assets/image-20211018144623731.png" alt="image-20211018144623731" style="zoom:67%;" />
+   <img src="README.assets/image-20211018144623731.png" alt="image-20211018144623731" style="zoom: 50%;" />
 
    当训练到137代时，模型训练集上的正确率已经达到了100%, 而之后通过不断训练，模型在测试集上的正确率还在不断增加，正确率从92%增长到了95%。
 
